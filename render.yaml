@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: bookkeeping-demo
+    runtime: python
+    buildCommand: pip install -r requirements-bookkeeping-demo.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: BOOKKEEPING_APP_NAME
+        value: Personal Bookkeeping
+      - key: BOOKKEEPING_PUBLIC_DEMO_MODE
+        value: "true"
+      - key: BOOKKEEPING_DEMO_ALLOW_EXPORTS
+        value: "false"
+      - key: BOOKKEEPING_CONTACT_URL
+        value: https://yourwebsite.com/contact
+    healthCheckPath: /api/health

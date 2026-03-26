@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Demo Receipt Preview</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background: #f1f4f7;
+      color: #22303b;
+      padding: 24px;
+    }
+
+    .receipt {
+      width: min(440px, 100%);
+      margin: 0 auto;
+      background: white;
+      border: 1px solid #dbe3ea;
+      border-radius: 18px;
+      box-shadow: 0 16px 36px rgba(38, 63, 84, 0.08);
+      padding: 22px;
+    }
+
+    .brand {
+      border-bottom: 1px dashed #ccd6df;
+      padding-bottom: 16px;
+      margin-bottom: 16px;
+    }
+
+    .brand h1,
+    .brand p,
+    .row p {
+      margin: 0;
+    }
+
+    .brand h1 {
+      font-size: 24px;
+    }
+
+    .meta {
+      color: #607180;
+      font-size: 14px;
+      margin-top: 4px;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid #edf1f4;
+      font-size: 15px;
+    }
+
+    .row.total {
+      font-weight: 700;
+      font-size: 18px;
+      border-bottom: none;
+      padding-top: 14px;
+    }
+
+    .footnote {
+      margin-top: 14px;
+      color: #607180;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <div class="receipt">
+    <div class="brand">
+      <h1>Spar Pharmacy</h1>
+      <p class="meta">Demo retail receipt</p>
+      <p class="meta">05 Jan 2026 11:24</p>
+    </div>
+
+    <div class="row">
+      <p>Pain Relief Tablets</p>
+      <p>189.99</p>
+    </div>
+    <div class="row">
+      <p>Vitamin C</p>
+      <p>130.56</p>
+    </div>
+    <div class="row">
+      <p>Health Snack</p>
+      <p>100.00</p>
+    </div>
+    <div class="row">
+      <p>VAT</p>
+      <p>54.86</p>
+    </div>
+    <div class="row total">
+      <p>Total</p>
+      <p>420.55</p>
+    </div>
+
+    <p class="footnote">Sample document used for the public bookkeeping demo. No real receipt or customer data is stored.</p>
+  </div>
+</body>
+</html>

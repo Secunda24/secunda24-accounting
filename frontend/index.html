@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personal Bookkeeping</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <p id="sidebarEyebrow" class="eyebrow">Local Desktop Ledger</p>
+        <h1 id="appTitle">Personal Bookkeeping</h1>
+        <p id="sidebarSubtitle" class="subtle">Private, simple, and stored on your PC.</p>
+      </div>
+
+      <nav class="nav-list">
+        <button class="nav-button active" data-view="home">Overview</button>
+        <button class="nav-button" data-view="statement-import">Import Statement</button>
+        <button class="nav-button" data-view="receipt-import">Import Receipt</button>
+        <button class="nav-button" data-view="ledger">Ledger</button>
+        <button class="nav-button" data-view="reports">Reports</button>
+        <button class="nav-button" data-view="settings">Settings</button>
+        <button class="nav-button" data-view="help">Help</button>
+      </nav>
+
+      <div class="sidebar-card">
+        <p class="sidebar-card-title">Workbook</p>
+        <p id="sidebarWorkbookPath" class="path-text">Loading...</p>
+        <p id="sidebarModeNote" class="subtle hidden"></p>
+        <div class="stack-actions">
+          <button id="sidebarOpenLedgerBtn">Open in Excel</button>
+          <button id="sidebarExportLedgerBtn">Export Copy</button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <p id="topbarEyebrow" class="eyebrow">Local bookkeeping assistant</p>
+          <h2 id="viewTitle">Overview</h2>
+        </div>
+        <div class="topbar-actions">
+          <button id="quickStatementBtn">New Statement Import</button>
+          <button id="quickReceiptBtn">New Receipt Import</button>
+          <button id="resetDemoBtn" class="secondary-button hidden">Reset Demo Data</button>
+        </div>
+      </header>
+
+      <div id="appModeBanner" class="mode-banner hidden"></div>
+
+      <section class="view active" id="home">
+        <div class="hero">
+          <div>
+            <p class="eyebrow">Start here</p>
+            <h3 id="heroHeading">Import, review, and save your records without leaving your computer.</h3>
+            <p id="heroSubtle" class="subtle">Use the quick actions below or go straight to statement and receipt imports.</p>
+          </div>
+          <div class="hero-actions">
+            <button class="primary-button" data-go-view="statement-import">Import Statement</button>
+            <button class="secondary-button" data-go-view="receipt-import">Import Receipt</button>
+          </div>
+        </div>
+
+        <div class="card-grid four">
+          <article class="stat-card">
+            <p class="stat-label">Ledger Entries</p>
+            <h3 id="statLedgerEntries">0</h3>
+          </article>
+          <article class="stat-card">
+            <p class="stat-label">Receipts Saved</p>
+            <h3 id="statReceipts">0</h3>
+          </article>
+          <article class="stat-card">
+            <p class="stat-label">Needs Review</p>
+            <h3 id="statNeedsReview">0</h3>
+          </article>
+          <article class="stat-card">
+            <p class="stat-label">Total Imports</p>
+            <h3 id="statImports">0</h3>
+          </article>
+        </div>
+
+        <div class="card-grid two">
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Recent activity</p>
+                <h3>Latest imports</h3>
+              </div>
+              <button class="secondary-button" data-go-view="ledger">Open Ledger</button>
+            </div>
+            <div id="recentImportsList" class="list-block"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Quick guidance</p>
+                <h3>Recommended workflow</h3>
+              </div>
+            </div>
+            <ol class="simple-steps">
+              <li>Import a bank statement first.</li>
+              <li>Review flagged rows and fix anything uncertain.</li>
+              <li>Save approved entries to the workbook.</li>
+              <li>Import receipts and link them where needed.</li>
+              <li>Use reports and exports for month-end review.</li>
+            </ol>
+          </section>
+        </div>
+      </section>
+
+      <section class="view" id="statement-import">
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Statement import</p>
+              <h3>Step 1. Choose a bank statement</h3>
+            </div>
+          </div>
+
+          <div class="upload-layout">
+            <div>
+              <label class="dropzone" id="statementDropzone">
+                <input type="file" id="statementFile" accept=".pdf,.png,.jpg,.jpeg,.tif,.tiff" hidden />
+                <span class="dropzone-title">Drop statement here or click to browse</span>
+                <span class="dropzone-subtitle">Supported: PDF, PNG, JPG, TIFF</span>
+              </label>
+              <div id="statementDemoNotice" class="inline-actions hidden">
+                <button class="secondary-button" id="loadDemoStatementBtn">Use Demo Statement</button>
+              </div>
+              <div id="statementFileMeta" class="file-meta empty-state">No file selected yet.</div>
+              <div class="inline-actions">
+                <button class="primary-button" id="uploadStatementBtn">Step 2. Extract Data</button>
+                <button class="secondary-button" id="clearStatementBtn">Clear</button>
+              </div>
+              <div id="statementMessage" class="message"></div>
+              <div id="statementSummary" class="summary-strip"></div>
+            </div>
+            <div>
+              <div class="preview-panel">
+                <div class="preview-header">
+                  <h4>Document Preview</h4>
+                  <p class="subtle">After extraction, the uploaded file appears here.</p>
+                </div>
+                <div id="statementPreviewPane" class="preview-surface empty-state">No preview available yet.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Step 3</p>
+              <h3>Review extracted transactions</h3>
+            </div>
+          </div>
+          <div id="statementReview"></div>
+        </div>
+      </section>
+
+      <section class="view" id="receipt-import">
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Receipt import</p>
+              <h3>Step 1. Choose a receipt</h3>
+            </div>
+          </div>
+
+          <div class="upload-layout">
+            <div>
+              <label class="dropzone" id="receiptDropzone">
+                <input type="file" id="receiptFile" accept=".pdf,.png,.jpg,.jpeg" hidden />
+                <span class="dropzone-title">Drop receipt here or click to browse</span>
+                <span class="dropzone-subtitle">Supported: PDF, PNG, JPG</span>
+              </label>
+              <div id="receiptDemoNotice" class="inline-actions hidden">
+                <button class="secondary-button" id="loadDemoReceiptBtn">Use Demo Receipt</button>
+              </div>
+              <div id="receiptFileMeta" class="file-meta empty-state">No file selected yet.</div>
+              <div class="inline-actions">
+                <button class="primary-button" id="uploadReceiptBtn">Step 2. Extract Data</button>
+                <button class="secondary-button" id="clearReceiptBtn">Clear</button>
+              </div>
+              <div id="receiptMessage" class="message"></div>
+              <div id="receiptSummary" class="summary-strip"></div>
+            </div>
+            <div>
+              <div class="preview-panel">
+                <div class="preview-header">
+                  <h4>Document Preview</h4>
+                  <p class="subtle">Use this side-by-side while checking OCR results.</p>
+                </div>
+                <div id="receiptPreviewPane" class="preview-surface empty-state">No preview available yet.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Step 3</p>
+              <h3>Review extracted receipt details</h3>
+            </div>
+          </div>
+          <div id="receiptReview"></div>
+        </div>
+      </section>
+
+      <section class="view" id="ledger">
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Ledger</p>
+              <h3>Saved entries and filters</h3>
+            </div>
+            <div class="inline-actions">
+              <button class="secondary-button" id="refreshLedgerBtn">Refresh</button>
+              <button class="secondary-button" id="openLedgerBtn">Open in Excel</button>
+              <button class="primary-button" id="downloadLedgerBtn">Export Workbook Copy</button>
+            </div>
+          </div>
+
+          <div class="card-grid three compact-cards">
+            <article class="stat-card">
+              <p class="stat-label">Income</p>
+              <h3 id="ledgerIncomeTotal">0.00</h3>
+            </article>
+            <article class="stat-card">
+              <p class="stat-label">Expenses</p>
+              <h3 id="ledgerExpenseTotal">0.00</h3>
+            </article>
+            <article class="stat-card">
+              <p class="stat-label">Entries in View</p>
+              <h3 id="ledgerRowsCount">0</h3>
+            </article>
+          </div>
+
+          <div class="filter-grid">
+            <input type="date" id="filterDateFrom" />
+            <input type="date" id="filterDateTo" />
+            <select id="filterCategory"><option value="">All Categories</option></select>
+            <select id="filterSource">
+              <option value="">All Sources</option>
+              <option value="Statement">Statement</option>
+            </select>
+            <input type="number" id="filterMinAmount" placeholder="Min amount" step="0.01" />
+            <input type="number" id="filterMaxAmount" placeholder="Max amount" step="0.01" />
+            <button class="primary-button" id="applyFiltersBtn">Apply Filters</button>
+            <button class="secondary-button" id="clearFiltersBtn">Clear Filters</button>
+          </div>
+
+          <div id="ledgerTable"></div>
+        </div>
+      </section>
+
+      <section class="view" id="reports">
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Reports</p>
+              <h3>Monthly totals and income vs expenses</h3>
+            </div>
+            <button class="primary-button" id="downloadSummaryBtn">Export Summary to Excel</button>
+          </div>
+          <div id="reportsContent"></div>
+        </div>
+      </section>
+
+      <section class="view" id="settings">
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Settings</p>
+              <h3 id="settingsHeading">Adjust local categories and OCR paths</h3>
+            </div>
+          </div>
+
+          <div id="settingsReadOnlyNotice" class="mode-banner subtle-banner hidden"></div>
+
+          <div class="settings-grid">
+            <label>
+              <span>Currency</span>
+              <input type="text" id="settingsCurrency" placeholder="ZAR" />
+            </label>
+            <label>
+              <span>Bank parser</span>
+              <input type="text" id="settingsBankParser" placeholder="sample_bank" />
+            </label>
+            <label class="full-width">
+              <span>Categories (comma separated)</span>
+              <textarea id="settingsCategories" rows="4"></textarea>
+            </label>
+            <label class="full-width">
+              <span>Tesseract path</span>
+              <input type="text" id="settingsTesseract" placeholder="C:\\Program Files\\Tesseract-OCR\\tesseract.exe" />
+            </label>
+            <label class="full-width">
+              <span>Poppler path</span>
+              <input type="text" id="settingsPoppler" placeholder="C:\\path\\to\\poppler\\Library\\bin" />
+            </label>
+          </div>
+
+          <div class="inline-actions">
+            <button class="primary-button" id="saveSettingsBtn">Save Settings</button>
+            <button class="secondary-button" id="reloadSettingsBtn">Reload</button>
+          </div>
+          <div id="settingsMessage" class="message"></div>
+        </div>
+      </section>
+
+      <section class="view" id="help">
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Help</p>
+              <h3>Quick reference</h3>
+            </div>
+          </div>
+
+          <div class="help-grid">
+            <article class="help-card">
+              <h4>Daily use</h4>
+              <ul class="clean-list">
+                <li>Import a statement first.</li>
+                <li>Review flagged rows before saving.</li>
+                <li>Import receipts after ledger entries exist.</li>
+                <li id="helpWorkflowLastItem">Open the workbook in Excel whenever you want.</li>
+              </ul>
+            </article>
+            <article class="help-card">
+              <h4>Files on disk</h4>
+              <ul class="clean-list">
+                <li>Workbook: <span class="path-inline">data/bookkeeping_ledger.xlsx</span></li>
+                <li>Statements: <span class="path-inline">uploads/statements</span></li>
+                <li>Receipts: <span class="path-inline">uploads/receipts</span></li>
+                <li>Exports: <span class="path-inline">exports</span></li>
+              </ul>
+            </article>
+            <article class="help-card">
+              <h4>Documents</h4>
+              <ul class="clean-list">
+                <li>Setup guide: <span class="path-inline">README.md</span></li>
+                <li>User guide: <span class="path-inline">HOW_TO_USE.md</span></li>
+                <li>Bank parser starter: <span class="path-inline">app/parsers/sample_bank.py</span></li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

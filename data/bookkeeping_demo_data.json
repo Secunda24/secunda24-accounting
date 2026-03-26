@@ -1,0 +1,218 @@
+{
+  "settings": {
+    "currency": "ZAR",
+    "bank_parser": "sample_bank",
+    "default_categories": [
+      "Groceries",
+      "Transport",
+      "Utilities",
+      "Entertainment",
+      "Medical",
+      "Salary/Income",
+      "Transfer",
+      "Cash Withdrawal",
+      "Other"
+    ]
+  },
+  "ledger": [
+    {
+      "ID": "L-00001",
+      "Date": "2026-01-03",
+      "Description": "Salary - Secunda24 Media",
+      "Category": "Salary/Income",
+      "Debit": 0,
+      "Credit": 28500,
+      "Balance": 28500,
+      "Source Type": "Statement",
+      "Source File": "demo_statement_january.pdf",
+      "Notes": "Demo opening month",
+      "Status": "Ready"
+    },
+    {
+      "ID": "L-00002",
+      "Date": "2026-01-05",
+      "Description": "Spar Pharmacy",
+      "Category": "Medical",
+      "Debit": 420.55,
+      "Credit": 0,
+      "Balance": 28079.45,
+      "Source Type": "Statement",
+      "Source File": "demo_statement_january.pdf",
+      "Notes": "",
+      "Status": "Ready"
+    },
+    {
+      "ID": "L-00003",
+      "Date": "2026-01-07",
+      "Description": "Sasol Fuel Station",
+      "Category": "Transport",
+      "Debit": 950,
+      "Credit": 0,
+      "Balance": 27129.45,
+      "Source Type": "Statement",
+      "Source File": "demo_statement_january.pdf",
+      "Notes": "",
+      "Status": "Ready"
+    },
+    {
+      "ID": "L-00004",
+      "Date": "2026-02-01",
+      "Description": "Salary - Secunda24 Media",
+      "Category": "Salary/Income",
+      "Debit": 0,
+      "Credit": 28500,
+      "Balance": 55629.45,
+      "Source Type": "Statement",
+      "Source File": "demo_statement_february.pdf",
+      "Notes": "",
+      "Status": "Ready"
+    },
+    {
+      "ID": "L-00005",
+      "Date": "2026-02-02",
+      "Description": "Municipal Electricity",
+      "Category": "Utilities",
+      "Debit": 1850.4,
+      "Credit": 0,
+      "Balance": 53779.05,
+      "Source Type": "Statement",
+      "Source File": "demo_statement_february.pdf",
+      "Notes": "",
+      "Status": "Ready"
+    },
+    {
+      "ID": "L-00006",
+      "Date": "2026-02-05",
+      "Description": "Woolworths Secunda",
+      "Category": "Groceries",
+      "Debit": 1320.1,
+      "Credit": 0,
+      "Balance": 52458.95,
+      "Source Type": "Statement",
+      "Source File": "demo_statement_february.pdf",
+      "Notes": "",
+      "Status": "Ready"
+    },
+    {
+      "ID": "L-00007",
+      "Date": "2026-02-10",
+      "Description": "Transfer to Savings",
+      "Category": "Transfer",
+      "Debit": 5000,
+      "Credit": 0,
+      "Balance": 47458.95,
+      "Source Type": "Statement",
+      "Source File": "demo_statement_february.pdf",
+      "Notes": "Review transfer rules later",
+      "Status": "Needs Review"
+    }
+  ],
+  "receipts": [
+    {
+      "Receipt ID": "R-00001",
+      "Date": "2026-02-05",
+      "Vendor": "Woolworths Secunda",
+      "Amount": 1320.1,
+      "Tax": 172.19,
+      "Linked Ledger ID": "L-00006",
+      "Source File": "demo_receipt_woolworths.jpg",
+      "OCR Confidence": 0.94,
+      "Notes": "Matched automatically"
+    }
+  ],
+  "imports_log": [
+    {
+      "Import Date/Time": "2026-01-05 09:12:00",
+      "File Name": "demo_statement_january.pdf",
+      "File Type": "statement",
+      "Rows Extracted": 3,
+      "Result": "Saved",
+      "Error Notes": ""
+    },
+    {
+      "Import Date/Time": "2026-02-05 09:30:00",
+      "File Name": "demo_statement_february.pdf",
+      "File Type": "statement",
+      "Rows Extracted": 4,
+      "Result": "Saved",
+      "Error Notes": ""
+    },
+    {
+      "Import Date/Time": "2026-02-05 10:02:00",
+      "File Name": "demo_receipt_woolworths.jpg",
+      "File Type": "receipt",
+      "Rows Extracted": 1,
+      "Result": "Saved",
+      "Error Notes": ""
+    }
+  ],
+  "demo_statement": {
+    "file_name": "demo_statement_march.pdf",
+    "preview_url": "/demo/bookkeeping-statement-preview.html",
+    "confidence": 0.97,
+    "message": "Demo statement loaded. Review the sample rows, make edits if you like, and save them into your browser sandbox.",
+    "rows": [
+      {
+        "date": "2026-03-01",
+        "description": "Salary - Secunda24 Media",
+        "category": "Salary/Income",
+        "debit": 0,
+        "credit": 29600,
+        "balance": 77058.95,
+        "source_file": "demo_statement_march.pdf",
+        "notes": "",
+        "status": "Ready",
+        "confidence": 0.99,
+        "needs_review": false
+      },
+      {
+        "date": "2026-03-03",
+        "description": "Checkers Hyper",
+        "category": "Groceries",
+        "debit": 1104.88,
+        "credit": 0,
+        "balance": 75954.07,
+        "source_file": "demo_statement_march.pdf",
+        "notes": "",
+        "status": "Ready",
+        "confidence": 0.94,
+        "needs_review": false
+      },
+      {
+        "date": "2026-03-04",
+        "description": "City Utilities",
+        "category": "Utilities",
+        "debit": 720,
+        "credit": 0,
+        "balance": 75234.07,
+        "source_file": "demo_statement_march.pdf",
+        "notes": "Sample row for review",
+        "status": "Ready",
+        "confidence": 0.91,
+        "needs_review": false
+      }
+    ]
+  },
+  "demo_receipt": {
+    "file_name": "demo_receipt_spar.jpg",
+    "preview_url": "/demo/bookkeeping-receipt-preview.html",
+    "confidence": 0.93,
+    "message": "Demo receipt loaded. Review the extracted details, then save them into your browser sandbox.",
+    "rows": [
+      {
+        "receipt_id": null,
+        "date": "2026-01-05",
+        "vendor": "Spar Pharmacy",
+        "amount": 420.55,
+        "tax": 54.86,
+        "linked_ledger_id": "L-00002",
+        "source_file": "demo_receipt_spar.jpg",
+        "ocr_confidence": 0.93,
+        "notes": "Matched against the pharmacy expense.",
+        "payment_method": "Card",
+        "status": "Ready",
+        "needs_review": false
+      }
+    ]
+  }
+}

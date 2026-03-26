@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Demo Statement Preview</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background: #f2f6f9;
+      color: #1d2a35;
+      padding: 24px;
+    }
+
+    .sheet {
+      max-width: 920px;
+      margin: 0 auto;
+      background: white;
+      border: 1px solid #d8e0e8;
+      border-radius: 20px;
+      box-shadow: 0 16px 36px rgba(38, 63, 84, 0.08);
+      overflow: hidden;
+    }
+
+    .header {
+      padding: 24px;
+      border-bottom: 1px solid #e5ecf2;
+      background: linear-gradient(135deg, #16384e, #2b5b76);
+      color: white;
+    }
+
+    .header h1,
+    .header p {
+      margin: 0;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      padding: 20px 24px;
+      background: #f8fbfd;
+      border-bottom: 1px solid #e5ecf2;
+      font-size: 14px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 14px 16px;
+      border-bottom: 1px solid #e8edf2;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    thead {
+      background: #eef5fa;
+    }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="header">
+      <p>Secunda24 Business Account</p>
+      <h1>March Statement Preview</h1>
+    </div>
+    <div class="meta">
+      <div><strong>Account:</strong><br />Business Cheque 0043</div>
+      <div><strong>Period:</strong><br />01 Mar 2026 - 31 Mar 2026</div>
+      <div><strong>Demo only:</strong><br />No real bank data</div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Description</th>
+          <th>Debit</th>
+          <th>Credit</th>
+          <th>Balance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2026-03-01</td>
+          <td>Salary - Secunda24 Media</td>
+          <td>0.00</td>
+          <td>29600.00</td>
+          <td>77058.95</td>
+        </tr>
+        <tr>
+          <td>2026-03-03</td>
+          <td>Checkers Hyper</td>
+          <td>1104.88</td>
+          <td>0.00</td>
+          <td>75954.07</td>
+        </tr>
+        <tr>
+          <td>2026-03-04</td>
+          <td>City Utilities</td>
+          <td>720.00</td>
+          <td>0.00</td>
+          <td>75234.07</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
