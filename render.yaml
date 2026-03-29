@@ -2,7 +2,7 @@ services:
   - type: web
     name: bookkeeping-demo
     runtime: python
-    buildCommand: pip install -r requirements-bookkeeping-demo.txt
+    buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: BOOKKEEPING_APP_NAME
